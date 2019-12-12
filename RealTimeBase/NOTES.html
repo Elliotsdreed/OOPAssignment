@@ -1,0 +1,93 @@
+class Program
+    {
+        static PetManagement petManager = new PetManagement();
+        static void Main(string[] args)
+        {
+            Menu menu = new Menu();
+            Frame frame =new Frame();
+
+            Console.WriteLine("Welcome");
+            
+
+        
+            Console.Clear();
+            menu.Run();
+           
+            do
+            {
+                Console.Clear();
+                
+                
+                CreatePet();
+
+
+                frame.Display();
+
+                
+                
+                petManager.DisplayPets(); 
+
+              
+
+                Thread.Sleep(10000/10);
+                
+
+                
+            } while (true);
+           
+        }
+
+        public static void CreatePet()
+        {
+           Helper.Draw( 21,7,"Press C to adopt a Cat");
+           Helper.Draw( 21,8,"Press B to adopt a Bird");
+           Helper.Draw( 21,9,"Press F to adopt a Fish");
+            if (Console.KeyAvailable)
+            {
+                ConsoleKey keyPressed = Console.ReadKey(true).Key;
+
+                if (keyPressed == ConsoleKey.C)
+                {
+                        AddCat();
+                }
+
+                if (keyPressed == ConsoleKey.F)
+                {
+                        AddFish();
+                }
+
+                if (keyPressed == ConsoleKey.B)
+                {
+                       AddBird();
+                }
+            }
+        }
+
+        private static void AddCat()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter Cat Name");
+            string name = Console.ReadLine();
+            petManager.AddPet(new Pet(PetClass.Cat,name,100,50,50));
+
+        }
+
+          private static void AddFish()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter Fish Name");
+            string name = Console.ReadLine();
+            petManager.AddPet(new Pet(PetClass.Fish,name,100,50,50));
+
+        }
+
+          private static void AddBird()
+        {
+            Console.Clear();
+            Console.WriteLine("Enter Bird Name");
+            string name = Console.ReadLine();
+            petManager.AddPet(new Pet(PetClass.Bird,name,100,50,50));
+
+        }
+    }
+}
